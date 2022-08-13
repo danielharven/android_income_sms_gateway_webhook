@@ -88,8 +88,8 @@ public class SmsReceiver extends BroadcastReceiver {
     private JSONObject prepareMessage(String sender, String message) {
         JSONObject messageData = new JSONObject();
         try {
-            messageData.put("from", sender);
-            messageData.put("text", message);
+            messageData.put("phone", sender);
+            messageData.put("message", message);
         } catch (Exception e) {
             Log.e("SmsGateway", "Exception prepareMessage" + e);
         }

@@ -21,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 public class WebHookWorkRequest extends Worker {
 
     public final static String DATA_URL = "URL";
+    public final static String AUTH_TOKE= "URL";
     public final static String DATA_TEXT = "TEXT";
     public static final int MAX_ATTEMPT = 10;
 
