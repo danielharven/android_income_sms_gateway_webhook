@@ -23,7 +23,7 @@ public class DistributeSms extends AsyncTask<String, String, String> {
         try {
             System.out.println("starting works");
             System.out.println(myAuth);
-            String myUrl = "https://lupiyazedsms-ecdabsvihq-uc.a.run.app/outboxes/distributor";
+            String myUrl = "https://zedsms-ecdabsvihq-uc.a.run.app/outboxes/distributor";
 //            String credentials="?_start=0";
             url = new URL(myUrl);
             //open a URL coonnection

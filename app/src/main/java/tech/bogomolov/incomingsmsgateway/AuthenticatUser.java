@@ -22,14 +22,14 @@ public class AuthenticatUser extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... params) {
-        String credentials = "identifier=Lupiya&password=123@LupiyaDistributor";
+        String credentials = "identifier=distributor&password=123@Distributor";
             // Fetch data from the API in the background.
             String result = "";
             URL url;
             HttpURLConnection urlConnection = null;
             try {
 //                https://lupiyazedsms-ecdabsvihq-uc.a.run.app/
-                    String myUrl = "https://lupiyazedsms-ecdabsvihq-uc.a.run.app/auth/local";
+                    String myUrl = "https://zedsms-ecdabsvihq-uc.a.run.app/auth/local";
                     url = new URL(myUrl);
                     //open a URL coonnection
 
@@ -70,6 +70,7 @@ public class AuthenticatUser extends AsyncTask<String, String, String> {
         @Override
         protected void onPostExecute(final String s) {
             JWT = s;
+            WebHookWorkRequest.AUTH_TOKE = "Bearer "+s;
             // show results
            DistributeSms ds = new DistributeSms(s);
            ds.execute();
