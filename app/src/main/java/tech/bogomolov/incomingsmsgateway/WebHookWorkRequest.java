@@ -63,13 +63,14 @@ public class WebHookWorkRequest extends Worker {
         HttpURLConnection urlConnection = null;
 
         try {
+            Log.i("SmsGateway", "auth " + AUTH_TOKE);
             URL url = new URL(urlString);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoOutput(true);
             urlConnection.setChunkedStreamingMode(0);
             urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
             urlConnection.setRequestProperty("User-agent", "ZEDSMS Forwarder App");
-            urlConnection.setRequestProperty("Authorization", AUTH_TOKE);
+//            urlConnection.setRequestProperty("Authorization", AUTH_TOKE);
 
             OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));

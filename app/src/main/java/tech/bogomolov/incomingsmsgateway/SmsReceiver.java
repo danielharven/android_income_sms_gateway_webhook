@@ -90,6 +90,7 @@ public class SmsReceiver extends BroadcastReceiver {
         try {
             messageData.put("phone", sender);
             messageData.put("message", message);
+            Log.i("SMS SEND","Send SMS");
         } catch (Exception e) {
             Log.e("SmsGateway", "Exception prepareMessage" + e);
         }

@@ -18,4 +18,11 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_btn_add" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start|center_horizontal"
+        android:text="Settings" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
