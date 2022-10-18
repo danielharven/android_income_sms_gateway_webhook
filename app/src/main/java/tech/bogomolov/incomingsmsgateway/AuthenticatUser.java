@@ -14,6 +14,16 @@ import java.util.TimerTask;
 
 public class AuthenticatUser extends AsyncTask<String, String, String> {
     public String JWT ="";
+    String credentials = "identifier=distributor&password=123@Distributor";
+    String myUrl = "https://zedsms-ecdabsvihq-uc.a.run.app/auth/local";
+    String serverUrl = "https://zedsms-ecdabsvihq-uc.a.run.app/auth/local";
+
+    public AuthenticatUser(String username, String password, String serverUrl) {
+        this.credentials = "identifier="+username+"&password="+password;
+        this.myUrl = serverUrl+"/auth/local";
+        this.serverUrl =serverUrl;
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -22,14 +32,11 @@ public class AuthenticatUser extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... params) {
-        String credentials = "identifier=distributor&password=123@Distributor";
             // Fetch data from the API in the background.
             String result = "";
             URL url;
             HttpURLConnection urlConnection = null;
             try {
-//                https://lupiyazedsms-ecdabsvihq-uc.a.run.app/
-                    String myUrl = "https://zedsms-ecdabsvihq-uc.a.run.app/auth/local";
                     url = new URL(myUrl);
                     //open a URL coonnection
 
@@ -72,12 +79,12 @@ public class AuthenticatUser extends AsyncTask<String, String, String> {
             JWT = s;
             WebHookWorkRequest.AUTH_TOKE = "Bearer "+s;
             // show results
-           DistributeSms ds = new DistributeSms(s);
+           DistributeSms ds = new DistributeSms(s,this.serverUrl);
            ds.execute();
             new Timer().scheduleAtFixedRate(new TimerTask(){
                 @Override
                 public void run(){
-                    DistributeSms ds = new DistributeSms(s);
+                    DistributeSms ds = new DistributeSms(s, serverUrl);
                     ds.execute();
                 }
             },0,2*60*1000);

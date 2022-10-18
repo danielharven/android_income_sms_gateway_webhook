@@ -16,6 +16,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class RunningService extends Service {
+    private String serverUrl = "";
+    private String password = "";
+    private String username = "";
 
     private static final String CHANNEL_2_ID = "";
     /**
@@ -38,7 +41,6 @@ public class RunningService extends Service {
      */
     @Override
     public void onCreate() {
-
     }
 
     /**
@@ -46,14 +48,21 @@ public class RunningService extends Service {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand( Intent intent, int flags, int startId) {
         NotificationChannel channel2 = new NotificationChannel(
                 CHANNEL_2_ID,
                 "Channel 2",
                 NotificationManager.IMPORTANCE_HIGH
         );
         channel2.setDescription("This is channel 2");
+        this.username = intent.getStringExtra("username");
+        this.password = intent.getStringExtra("password");
+        this.serverUrl = intent.getStringExtra("serverUrl");
 
+        System.out.println("<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println(username);
+        System.out.println(username);
+        System.out.println(password);
         NotificationManager manager = getSystemService(NotificationManager.class);
         manager.createNotificationChannel(channel2);
 
@@ -64,13 +73,13 @@ public class RunningService extends Service {
 
         // Start the foreground service immediately.
         startForeground((int) System.currentTimeMillis(),myNotification);
-        AuthenticatUser authenticateUser = new AuthenticatUser();
+        AuthenticatUser authenticateUser = new AuthenticatUser(this.username, this.password, this.serverUrl);
         authenticateUser.execute();
         Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                AuthenticatUser authenticateUser = new AuthenticatUser();
+                AuthenticatUser authenticateUser = new AuthenticatUser(username, password, serverUrl);
                 authenticateUser.execute();
             }
         }, 0, 30 * 60 * 1000);

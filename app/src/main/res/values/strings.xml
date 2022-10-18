@@ -2,15 +2,21 @@
     <string name="app_name">ZedSMS APP</string>
     <string name="input_phone">0964862067</string>
     <string name="input_url">https://example.com</string>
+    <string name="label_credentials">Server Credentials</string>
+    <string name="input_server_username">Server Username</string>
+    <string name="input_server_password">Server Password</string>
     <string name="btn_add">Add</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_delete">Delete</string>
     <string name="delete_record">Delete record</string>
     <string name="key_phones_preference">phones</string>
+    <string name="key_server_preference">server</string>
     <string name="label_add_sender">Sender (number or text)</string>
+    <string name="label_distributor_url">Enter distributor url</string>
     <string name="label_sender">Sender</string>
     <string name="label_url">Webhook URL</string>
     <string name="hint_sender">number or text</string>
+    <string name="hint_url">URL for server</string>
     <string name="sender_recommendation">Use * symbol to catch any SMS</string>
     <string name="error_empty_sender">Empty sender</string>
     <string name="error_empty_url">Empty URL</string>
@@ -18,4 +24,5 @@
     <string name="asterisk">*</string>
     <string name="any">Any</string>
     <string name="confirm_delete">Do you really want to delete "%s" record?</string>
+    <string name="previous">previous</string>
 </resources>

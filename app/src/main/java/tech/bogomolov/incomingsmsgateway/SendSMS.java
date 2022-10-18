@@ -44,7 +44,7 @@ public class SendSMS extends Activity {
                     smsManager.sendTextMessage(phone, null, message, null, null);
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+                            "SMS failed, please try again.", Toast.LENGTH_LONG).show();
                     return;
                 }
             }

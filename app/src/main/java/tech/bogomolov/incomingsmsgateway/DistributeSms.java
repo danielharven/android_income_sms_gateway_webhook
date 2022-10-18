@@ -15,6 +15,7 @@ import java.net.URL;
 
 public class DistributeSms extends AsyncTask<String, String, String> {
     private String myAuth ="";
+    private String serverUrl ="";
     @Override
     protected String doInBackground(String... strings) {
         String result = "";
@@ -23,7 +24,7 @@ public class DistributeSms extends AsyncTask<String, String, String> {
         try {
             System.out.println("starting works");
             System.out.println(myAuth);
-            String myUrl = "https://zedsms-ecdabsvihq-uc.a.run.app/outboxes/distributor";
+            String myUrl = this.serverUrl+"/outboxes/distributor";
 //            String credentials="?_start=0";
             url = new URL(myUrl);
             //open a URL coonnection
@@ -58,12 +59,13 @@ public class DistributeSms extends AsyncTask<String, String, String> {
 
         return result.toString();
     }
-    public DistributeSms(String auth){
+    public DistributeSms(String s, String serverUrl){
+        this.serverUrl = serverUrl;
         try{
-            JSONObject myJs = new JSONObject(auth);
+            JSONObject myJs = new JSONObject(s);
             myAuth = "Bearer "+ myJs.get("jwt").toString();
         }catch (JSONException js){
-            System.out.println(js.getMessage());
+
         }
 
     }
@@ -84,7 +86,7 @@ public class DistributeSms extends AsyncTask<String, String, String> {
                     SendSMS sms = new SendSMS(phone,message);
                     sms.sendTheSms();
                     //update sms has been sent
-                    UpdateSendSms uss = new UpdateSendSms(id,this.myAuth);
+                    UpdateSendSms uss = new UpdateSendSms(id,this.myAuth,this.serverUrl);
                     uss.execute();
 
                 }

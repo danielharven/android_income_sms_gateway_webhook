@@ -13,9 +13,11 @@ import java.net.URL;
 public class UpdateSendSms extends AsyncTask<String, String, String> {
     private String myAuth ="";
     private String id ="";
-    public UpdateSendSms(String id, String auth){
+    private String serverUrl ="";
+    public UpdateSendSms( String id, String auth,String serverUrl){
         this.id =id;
         this.myAuth =auth;
+        this.serverUrl = serverUrl;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class UpdateSendSms extends AsyncTask<String, String, String> {
         try {
             System.out.println("updating works");
             System.out.println(myAuth);
-            String myUrl = "https://zedsms-ecdabsvihq-uc.a.run.app/outboxes/"+id;
+            String myUrl = serverUrl + "/outboxes/"+id;
             String credentials="status=Completely%20Delivered&sent=true";
             url = new URL(myUrl);
             //open a URL coonnection
